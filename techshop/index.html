@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechShop | البوابة المعمارية والتشغيلية الرئيسية من A إلى Z</title>
+  <meta name="description" content="البوابة الرئيسية الشاملة لمنظومة TechShop متعددة البائعين ونظام التوصيل الذكي وشحن الطرود P2P مبنية على Laravel 12">
+  
+  <!-- Google Fonts: Cairo, Outfit & Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Outfit:wght@400;600;700;800&family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+  <!-- Ambient Lighting Glows -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Header / Navigation -->
+  <header class="navbar-glass" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-group">
+        <div class="brand-logo">
+          <i class="fa-solid fa-cube"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">TechShop</span>
+          <span class="brand-badge">A to Z Architecture Hub</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link active"><i class="fa-solid fa-house"></i> الرئيسية</a>
+        <a href="modules.html" class="nav-link"><i class="fa-solid fa-cubes"></i> الـ 20 موديول</a>
+        <a href="laravel.html" class="nav-link"><i class="fa-brands fa-laravel"></i> كيف تعمل لارافيل</a>
+        <a href="structure.html" class="nav-link"><i class="fa-solid fa-folder-tree"></i> هيكل الملفات</a>
+        <a href="quickstart.html" class="nav-link"><i class="fa-solid fa-terminal"></i> دليل التشغيل</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="searchTriggerBtn" class="action-btn" title="بحث سريع (Ctrl + K)">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span class="btn-kbd">/</span>
+        </button>
+        <button id="presentationModeBtn" class="action-btn highlight" title="وضع العرض التقديمي (Slides)">
+          <i class="fa-solid fa-chalkboard-user"></i>
+          <span>وضع العرض</span>
+        </button>
+        <button id="soundToggleBtn" class="action-btn" title="تفعيل/تعطيل الصوت">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+      </div>
+    </div>
+    <!-- Reading Progress Bar -->
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+  </header>
+
+  <!-- Quick Search Modal -->
+  <div class="modal-overlay" id="searchModal">
+    <div class="search-modal-box">
+      <div class="search-input-wrapper">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="globalSearchInput" placeholder="ابحث عن موديول، Model، Service، Controller، أو مسار..." autocomplete="off">
+        <button class="modal-close" id="closeSearchModal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="search-results-container" id="searchResults">
+        <div class="search-hint">اكتب للبحث الفوري في الـ 20 موديول ونماذج قاعدة البيانات والمسارات التقنية...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Container -->
+  <main class="main-content">
+    
+    <!-- Hero Section -->
+    <section id="overview" class="section hero-section">
+      <div class="hero-content">
+        <div class="hero-pill">
+          <span class="pulse-dot"></span>
+          <span>منصة متعددة البائعين + نظام توصيل متسلسل + شحن طرود P2P</span>
+        </div>
+        <h1 class="hero-title">
+          دليل ومعمارية مشروع <span class="gradient-text">TechShop</span> من A إلى Z
+        </h1>
+        <p class="hero-subtitle">
+          المرجع الشامل والتفاعلي لمنظومة التجارة والتوصيل: الربط بين العملاء، التجار، المناديب، وإدارة الأدمن المركزية مع معمارية قوية مبنية على <strong>Laravel 12 & Sanctum & Reverb</strong>.
+        </p>
+
+        <!-- Dynamic Hub Navigation Cards (Multi-Page Navigation) -->
+        <div class="hub-grid">
+          <!-- Hub Card 1: 20 Modules -->
+          <a href="modules.html" class="hub-card">
+            <div class="hub-icon icon-cyan"><i class="fa-solid fa-cubes"></i></div>
+            <div class="hub-title">الـ 20 موديول بالتفصيل</div>
+            <div class="hub-desc">استعرض جميع الموديولات الـ 20 مع النماذج (Models)، الكنترولرز، والخدمات (Services) وقنوات الـ WebSockets.</div>
+            <div class="hub-link-text">استكشاف الموديولات <i class="fa-solid fa-arrow-left"></i></div>
+          </a>
+
+          <!-- Hub Card 2: Laravel Engine Deep Dive -->
+          <a href="laravel.html" class="hub-card laravel-card">
+            <div class="hub-icon icon-laravel"><i class="fa-brands fa-laravel"></i></div>
+            <div class="hub-title">كيف تعمل لارافيل من الداخل؟</div>
+            <div class="hub-desc">شرح دورة حياة الطلب، الـ Service Container، الـ Middlewares، الـ Eloquent ORM، والريال تايم مع أفضل الممارسات.</div>
+            <div class="hub-link-text">دليل محرك لارافيل <i class="fa-solid fa-arrow-left"></i></div>
+          </a>
+
+          <!-- Hub Card 3: Directory Structure -->
+          <a href="structure.html" class="hub-card" style="border-color: rgba(244,63,94,0.3);">
+            <div class="hub-icon" style="background: rgba(244,63,94,0.15); color: var(--accent-rose);"><i class="fa-solid fa-folder-tree"></i></div>
+            <div class="hub-title">هيكل ملفات ومجلدات لارافيل</div>
+            <div class="hub-desc">تشريح دقيق لكل مجلد وملف: app، routes، database، config، وأين تضع كل سطر كود باحترافية.</div>
+            <div class="hub-link-text" style="color: var(--accent-rose);">استعراض هيكل الملفات <i class="fa-solid fa-arrow-left"></i></div>
+          </a>
+
+          <!-- Hub Card 4: Quickstart & Operations -->
+          <a href="quickstart.html" class="hub-card emerald-card">
+            <div class="hub-icon icon-emerald"><i class="fa-solid fa-terminal"></i></div>
+            <div class="hub-title">دليل البدء والتشغيل من الصفر</div>
+            <div class="hub-desc">خطوات تشغيل المشروع، ترحيل قاعدة البيانات، مفاتيح التشفير، أوامر الكرون، ومجموعات بوستمان للاختبار.</div>
+            <div class="hub-link-text">خطوات التشغيل <i class="fa-solid fa-arrow-left"></i></div>
+          </a>
+        </div>
+
+        <!-- Live Metrics Cards -->
+        <div class="stats-grid">
+          <div class="stat-card" data-tilt>
+            <div class="stat-icon icon-emerald"><i class="fa-solid fa-store"></i></div>
+            <div class="stat-info">
+              <span class="stat-number">4+</span>
+              <span class="stat-label">أنواع تجار (مطاعم، صيدليات، كافيهات، سوبرماركت)</span>
+            </div>
+          </div>
+          <div class="stat-card" data-tilt>
+            <div class="stat-icon icon-cyan"><i class="fa-solid fa-cubes"></i></div>
+            <div class="stat-info">
+              <span class="stat-number">20</span>
+              <span class="stat-label">موديول تشغيلي وخدمي متكامل</span>
+            </div>
+          </div>
+          <div class="stat-card" data-tilt>
+            <div class="stat-icon icon-indigo"><i class="fa-solid fa-truck-fast"></i></div>
+            <div class="stat-info">
+              <span class="stat-number">Hybrid</span>
+              <span class="stat-label">توصيل متسلسل Multi-Pickup + شحن P2P</span>
+            </div>
+          </div>
+          <div class="stat-card" data-tilt>
+            <div class="stat-icon icon-amber"><i class="fa-solid fa-bolt"></i></div>
+            <div class="stat-info">
+              <span class="stat-number">Realtime</span>
+              <span class="stat-label">WebSockets (Reverb & Echo) & FCM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Buttons -->
+        <div class="hero-ctas">
+          <a href="#order-flow" class="cta-btn primary-btn"><i class="fa-solid fa-play"></i> تجربة محاكي رحلة الطلب</a>
+          <a href="#roles" class="cta-btn secondary-btn"><i class="fa-solid fa-users"></i> مصفوفة الأدوار والصلاحيات</a>
+          <a href="#diagram" class="cta-btn glass-btn"><i class="fa-solid fa-diagram-project"></i> خريطة العلاقات</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: Roles and Actors Matrix -->
+    <section id="roles" class="section">
+      <div class="section-header">
+        <div class="section-tag"><i class="fa-solid fa-users"></i> هيكل النظام</div>
+        <h2 class="section-title">الأطراف الرئيسية والأدوار في المنظومة</h2>
+        <p class="section-desc">تم تصميم النظام ليعمل بتناغم بين 4 أطراف رئيسية عبر واجهات ويب وتطبيقات موبايل مع صلاحيات دقيقة عبر Spatie Permissions.</p>
+      </div>
+
+      <!-- Role Selector Tabs -->
+      <div class="role-tabs">
+        <button class="role-tab active" data-role="admin">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>Admin & موظفو الأدمن</span>
+        </button>
+        <button class="role-tab" data-role="vendor">
+          <i class="fa-solid fa-shop"></i>
+          <span>Vendor & موظفو التاجر</span>
+        </button>
+        <button class="role-tab" data-role="customer">
+          <i class="fa-solid fa-user"></i>
+          <span>Customer (العميل)</span>
+        </button>
+        <button class="role-tab" data-role="delivery">
+          <i class="fa-solid fa-motorcycle"></i>
+          <span>Delivery (المندوب)</span>
+        </button>
+      </div>
+
+      <!-- Role Details Dynamic Display -->
+      <div class="role-card-display" id="roleCardDisplay"></div>
+
+      <!-- Role Permission Hierarchy Reference -->
+      <div class="roles-code-box">
+        <div class="code-box-header">
+          <span><i class="fa-solid fa-key"></i> الأدوار التقنية في قاعدة البيانات (Spatie Roles & Guards)</span>
+          <span class="badge-role">Laravel 12 / Sanctum</span>
+        </div>
+        <div class="roles-chips">
+          <div class="role-chip"><span class="chip-dot dot-red"></span><code>admin</code>: تحكم كامل بموافقات المنصة، الزونز، المالية، والإعدادات.</div>
+          <div class="role-chip"><span class="chip-dot dot-orange"></span><code>admin_employee</code>: موظف أدمن بصلاحيات محددة عبر الـ Roles.</div>
+          <div class="role-chip"><span class="chip-dot dot-blue"></span><code>vendor</code>: مالك المتجر (الكتالوج، الفروع، الاشتراكات، الفلوس).</div>
+          <div class="role-chip"><span class="chip-dot dot-cyan"></span><code>vendor_employee</code>: إدارة الطلبات والفرع المخصص للتاجر.</div>
+          <div class="role-chip"><span class="chip-dot dot-green"></span><code>user</code>: العميل العادي (تصفح، طلب، شحن باكدج، محفظة).</div>
+          <div class="role-chip"><span class="chip-dot dot-purple"></span><code>Delivery Profile</code>: مستخدم معتمد بسجل <code>Delivery</code> نشط للشيفتات والتوصيل.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: Interactive Order Lifecycle Simulator -->
+    <section id="order-flow" class="section">
+      <div class="section-header">
+        <div class="section-tag"><i class="fa-solid fa-route"></i> قلب النظام التجاري</div>
+        <h2 class="section-title">محاكي رحلة الطلب من البداية للنهاية (Order Lifecycle)</h2>
+        <p class="section-desc">شاهد كيف يتحول سلة العميل التي تحتوي على عدة تجار إلى طلبات مستقلة وتعيينات توصيل فورية.</p>
+      </div>
+
+      <div class="simulator-container">
+        <!-- Step Progress Bar -->
+        <div class="stepper-nav" id="orderStepperNav">
+          <div class="step-nav-item active" data-step="1">
+            <div class="step-circle">1</div>
+            <div class="step-title">التصفح والسلة</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-nav-item" data-step="2">
+            <div class="step-circle">2</div>
+            <div class="step-title">العنوان والدفع</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-nav-item" data-step="3">
+            <div class="step-circle">3</div>
+            <div class="step-title">تقسيم الطلب (Split)</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-nav-item" data-step="4">
+            <div class="step-circle">4</div>
+            <div class="step-title">تحضير التاجر</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-nav-item" data-step="5">
+            <div class="step-circle">5</div>
+            <div class="step-title">المندوب والتسليم</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-nav-item" data-step="6">
+            <div class="step-circle">6</div>
+            <div class="step-title">ما بعد البيع</div>
+          </div>
+        </div>
+
+        <!-- Simulator Live Box -->
+        <div class="simulator-card" id="simulatorCard">
+          <div class="sim-header">
+            <div class="sim-status-badge" id="simStatusBadge">المرحلة 1 من 6: اختيار المنتجات</div>
+            <div class="sim-actions">
+              <button class="sim-btn" id="simPrevBtn" disabled><i class="fa-solid fa-arrow-right"></i> السابق</button>
+              <button class="sim-btn primary" id="simNextBtn">التالي <i class="fa-solid fa-arrow-left"></i></button>
+              <button class="sim-btn auto-play" id="simAutoPlayBtn"><i class="fa-solid fa-play"></i> تشغيل تلقائي</button>
+            </div>
+          </div>
+
+          <div class="sim-body" id="simBodyContent"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: Package Shipment Flow (User-to-User P2P) -->
+    <section id="package-flow" class="section">
+      <div class="section-header">
+        <div class="section-tag"><i class="fa-solid fa-box-open"></i> ميزة استثنائية</div>
+        <h2 class="section-title">نظام شحنات الباكدج (User-to-User P2P)</h2>
+        <p class="section-desc">خدمة شحن الطرود المستقلة بين المستخدمين مع نظام التسعير الديناميكي والمفاوضة وعروض المناديب.</p>
+      </div>
+
+      <div class="package-pipeline">
+        <div class="pipeline-step">
+          <div class="pipeline-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="pipeline-number">01</div>
+          <h3>إنشاء الشحنة</h3>
+          <p>تحديد نقطة الاستلام (Pickup) والتسليم (Dropoff)، مقاس الطرد (<code>PackageSize</code>)، والوصف وصورة الطرد.</p>
+          <span class="badge-tech"><code>PackageShipmentService</code></span>
+        </div>
+
+        <div class="pipeline-arrow"><i class="fa-solid fa-angles-left"></i></div>
+
+        <div class="pipeline-step">
+          <div class="pipeline-icon"><i class="fa-solid fa-comments-dollar"></i></div>
+          <div class="pipeline-number">02</div>
+          <h3>المفاوضة والعروض</h3>
+          <p>المناديب في نفس الزون يستقبلون الإشعار ويقدمون عروض أسعار (Offers). يمكن للعميل القبول أو التفاوض.</p>
+          <span class="badge-tech"><code>NegotiationService</code></span>
+        </div>
+
+        <div class="pipeline-arrow"><i class="fa-solid fa-angles-left"></i></div>
+
+        <div class="pipeline-step">
+          <div class="pipeline-icon"><i class="fa-solid fa-credit-card"></i></div>
+          <div class="pipeline-number">03</div>
+          <h3>الدفع والتثبيت</h3>
+          <p>عند قبول العرض يتم الدفع عبر المحفظة أو Kashier وتثبيت المندوب عبر <code>PackageShipmentAssignment</code>.</p>
+          <span class="badge-tech"><code>AssignmentService</code></span>
+        </div>
+
+        <div class="pipeline-arrow"><i class="fa-solid fa-angles-left"></i></div>
+
+        <div class="pipeline-step">
+          <div class="pipeline-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
+          <div class="pipeline-number">04</div>
+          <h3>الاستلام والتسليم</h3>
+          <p>تتبع المسار لحظياً عبر الخريطة مع إثبات التسليم للطرف المستلم وتسجيل سجل الحالات <code>PackageShipmentLog</code>.</p>
+          <span class="badge-tech"><code>Realtime Echo</code></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: 20 Modules Showcase -->
+    <section id="modules" class="section">
+      <div class="section-header">
+        <div class="section-tag"><i class="fa-solid fa-cubes"></i> تشريح كامل للنظام</div>
+        <h2 class="section-title">الموديولات الـ 20 بالتفصيل المعماري</h2>
+        <p class="section-desc">استعرض جميع الموديولات الـ 20 مع النماذج (Models)، وحدات التحكم (Controllers)، والخدمات (Services).</p>
+      </div>
+
+      <!-- Filters & Search -->
+      <div class="module-filter-bar">
+        <div class="filter-search-box">
+          <i class="fa-solid fa-filter"></i>
+          <input type="text" id="moduleSearchInput" placeholder="تصفية الموديولات حسب الاسم أو الـ Model أو الـ Service...">
+        </div>
+        <div class="filter-tags" id="moduleFilterTags">
+          <button class="filter-tag active" data-category="all">الكل (20)</button>
+          <button class="filter-tag" data-category="auth">المستخدمين والهوية</button>
+          <button class="filter-tag" data-category="catalog">الكتالوج والتجار</button>
+          <button class="filter-tag" data-category="orders">الطلبات والتوصيل</button>
+          <button class="filter-tag" data-category="finance">المدفوعات والمحافظ</button>
+          <button class="filter-tag" data-category="ops">الدعم والتشغيل</button>
+        </div>
+      </div>
+
+      <!-- Modules Grid -->
+      <div class="modules-grid" id="modulesGrid"></div>
+    </section>
+
+    <!-- SECTION: Interactive Entity Relationship Diagram (ERD) -->
+    <section id="diagram" class="section">
+      <div class="section-header">
+        <div class="section-tag"><i class="fa-solid fa-diagram-project"></i> خريطة العلاقات</div>
+        <h2 class="section-title">المخطط التفاعلي للعلاقات وتدفق البيانات</h2>
+        <p class="section-desc">انقر على أي كائن لاستكشاف العلاقات المباشرة وكيف ترتبط الجداول داخل قاعدة البيانات.</p>
+      </div>
+
+      <div class="diagram-interactive-wrapper">
+        <div class="diagram-toolbar">
+          <span class="diag-legend-item"><span class="legend-box box-customer"></span> Customer Nodes</span>
+          <span class="diag-legend-item"><span class="legend-box box-vendor"></span> Vendor Nodes</span>
+          <span class="diag-legend-item"><span class="legend-box box-order"></span> Order & Delivery</span>
+          <span class="diag-legend-item"><span class="legend-box box-admin"></span> Admin Operations</span>
+        </div>
+
+        <div class="diagram-canvas-container">
+          <div class="diagram-tree">
+            <!-- Node: Customer -->
+            <div class="tree-node-group">
+              <div class="tree-root node-customer" data-node="Customer">
+                <i class="fa-solid fa-user"></i>
+                <strong>Customer (العميل)</strong>
+              </div>
+              <div class="tree-branches">
+                <div class="branch-item" data-node="Address"><i class="fa-solid fa-location-dot"></i> Address / Cart / Coupon</div>
+                <div class="branch-item highlight-node" data-node="Order"><i class="fa-solid fa-receipt"></i> Order (الطلب الرئيسي)</div>
+                <div class="branch-item" data-node="Package"><i class="fa-solid fa-box"></i> PackageShipment (طرد P2P)</div>
+                <div class="branch-item" data-node="Wallet"><i class="fa-solid fa-wallet"></i> Wallet / Points / Kashier</div>
+                <div class="branch-item" data-node="Support"><i class="fa-solid fa-headset"></i> Tickets / Conversations / Ratings</div>
+              </div>
+            </div>
+
+            <div class="tree-connector"><i class="fa-solid fa-arrows-split-up-and-left"></i></div>
+
+            <!-- Node: Split Order Junction -->
+            <div class="tree-node-group center-junction">
+              <div class="tree-root node-order" data-node="VendorOrder">
+                <i class="fa-solid fa-split"></i>
+                <strong>تقسيم الطلب (VendorOrders)</strong>
+                <span class="sub-text">VendorOrder 1, VendorOrder 2 ...</span>
+              </div>
+              <div class="tree-branches">
+                <div class="branch-item node-delivery-branch" data-node="DeliveryAssignment">
+                  <i class="fa-solid fa-motorcycle"></i> DeliveryAssignment (توصيل متسلسل Multi-Pickup)
+                </div>
+              </div>
+            </div>
+
+            <div class="tree-connector"><i class="fa-solid fa-arrows-turn-to-dots"></i></div>
+
+            <!-- Node: Vendor -->
+            <div class="tree-node-group">
+              <div class="tree-root node-vendor" data-node="Vendor">
+                <i class="fa-solid fa-store"></i>
+                <strong>Vendor (التاجر)</strong>
+              </div>
+              <div class="tree-branches">
+                <div class="branch-item" data-node="Plan"><i class="fa-solid fa-medal"></i> Plan / Subscription (باقة الاشتراك)</div>
+                <div class="branch-item" data-node="Catalog"><i class="fa-solid fa-tags"></i> Categories / Variants / Requests</div>
+                <div class="branch-item" data-node="Products"><i class="fa-solid fa-burger"></i> Products / Branches / Stock</div>
+                <div class="branch-item" data-node="Balance"><i class="fa-solid fa-coins"></i> Balance / Withdrawals (أرباح وسحب)</div>
+              </div>
+            </div>
+
+            <div class="tree-connector"><i class="fa-solid fa-arrow-down-up-across-line"></i></div>
+
+            <!-- Node: Admin -->
+            <div class="tree-node-group">
+              <div class="tree-root node-admin" data-node="Admin">
+                <i class="fa-solid fa-user-shield"></i>
+                <strong>Admin Central (الإدارة المركزية)</strong>
+              </div>
+              <div class="tree-branches">
+                <div class="branch-item" data-node="Approvals"><i class="fa-solid fa-clipboard-check"></i> الموافقات (تجار، منتجات، سحب، استرجاع)</div>
+                <div class="branch-item" data-node="Zones"><i class="fa-solid fa-map-location-dot"></i> الزونز، الشيفتات، واعتماد المناديب</div>
+                <div class="branch-item" data-node="Marketing"><i class="fa-solid fa-bullhorn"></i> Sliders / Spotlights / Coupons</div>
+                <div class="branch-item" data-node="Settings"><i class="fa-solid fa-gears"></i> إعدادات المنصة، التقارير، وFCM جماعي</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Node Details Popover -->
+        <div class="diagram-info-panel" id="diagramInfoPanel">
+          <div class="panel-hint"><i class="fa-solid fa-circle-info"></i> انقر على أي جزء من المخطط أعلاه لعرض التفاصيل والنماذج المرتبطة مباشرة!</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: Executive Summary Box -->
+    <section class="section summary-section">
+      <div class="summary-box">
+        <div class="summary-icon"><i class="fa-solid fa-gem"></i></div>
+        <div class="summary-text">
+          <h3>ملخص النظام في جملة واحدة</h3>
+          <p class="summary-quote">
+            "TechShop = ماركتبليس متعدد التجار + طلبات مقسّمة لكل تاجر + توصيل تشغيلي بالزونز والشيفتات + شحن باكدج من مستخدم لمستخدم + اشتراكات بائعين + محفظة ومدفوعات ودعم وتشغيل مركزي من الأدمن."
+          </p>
+        </div>
+        <button class="copy-summary-btn" id="copySummaryBtn" title="نسخ الملخص">
+          <i class="fa-regular fa-copy"></i>
+          <span>نسخ الملخص</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Module Details Modal -->
+  <div class="modal-overlay" id="moduleModal">
+    <div class="module-modal-box">
+      <button class="modal-close" id="closeModuleModal"><i class="fa-solid fa-xmark"></i></button>
+      <div class="module-modal-header" id="moduleModalHeader"></div>
+      <div class="module-modal-body" id="moduleModalBody"></div>
+    </div>
+  </div>
+
+  <!-- Presentation Slide Mode Overlay -->
+  <div class="presentation-mode" id="presentationMode">
+    <div class="pres-header">
+      <div class="pres-title">TechShop - عرض تقديمي تفاعلي</div>
+      <div class="pres-controls">
+        <span class="pres-counter" id="presCounter">Slide 1 of 6</span>
+        <button class="pres-btn" id="presPrev"><i class="fa-solid fa-chevron-right"></i> السابق</button>
+        <button class="pres-btn primary" id="presNext">التالي <i class="fa-solid fa-chevron-left"></i></button>
+        <button class="pres-btn exit" id="presExit"><i class="fa-solid fa-xmark"></i> إنهاء العرض (Esc)</button>
+      </div>
+    </div>
+    <div class="pres-body" id="presBody"></div>
+    <div class="pres-footer">
+      <span>استخدم مفاتيح الأسهم &larr; &rarr; للتنقل، و Esc للخروج</span>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <i class="fa-solid fa-cube"></i>
+        <span>TechShop Architecture Documentation</span>
+      </div>
+      <p class="footer-desc">وثيقة تقنية وتشغيلية تفاعلية شاملة - مبنية بأحدث معايير هندسة البرمجيات والتصميم.</p>
+      <div class="footer-links">
+        <a href="index.html">الرئيسية</a>
+        <a href="modules.html">الموديولات (20)</a>
+        <a href="laravel.html">كيف تعمل لارافيل</a>
+        <a href="quickstart.html">دليل التشغيل</a>
+      </div>
+      <div class="footer-copy">© 2026 TechShop Platform. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- Notification Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>

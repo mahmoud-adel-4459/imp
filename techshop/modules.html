@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دليل الموديولات الـ 20 | منصة TechShop</title>
+  <meta name="description" content="استكشاف معماري تفاعلي شامل لـ 20 موديول داخل منصة TechShop مع النماذج ووحدات التحكم والخدمات البرمجية">
+  
+  <!-- Google Fonts: Cairo, Outfit & Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Outfit:wght@400;600;700;800&family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+  <!-- Ambient Glows -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Header / Navigation -->
+  <header class="navbar-glass" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-group">
+        <div class="brand-logo">
+          <i class="fa-solid fa-cubes"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">TechShop Modules</span>
+          <span class="brand-badge">20 Core Domains</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> الرئيسية</a>
+        <a href="modules.html" class="nav-link active"><i class="fa-solid fa-cubes"></i> الـ 20 موديول</a>
+        <a href="laravel.html" class="nav-link"><i class="fa-brands fa-laravel"></i> كيف تعمل لارافيل</a>
+        <a href="structure.html" class="nav-link"><i class="fa-solid fa-folder-tree"></i> هيكل الملفات</a>
+        <a href="quickstart.html" class="nav-link"><i class="fa-solid fa-terminal"></i> دليل التشغيل</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="searchTriggerBtn" class="action-btn" title="بحث فوري في الموديولات (Ctrl + K)">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span class="btn-kbd">/</span>
+        </button>
+        <button id="presentationModeBtn" class="action-btn highlight" title="وضع العرض التقديمي (Slides)">
+          <i class="fa-solid fa-chalkboard-user"></i>
+          <span>وضع العرض</span>
+        </button>
+        <button id="soundToggleBtn" class="action-btn" title="تفعيل/تعطيل الصوت">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+      </div>
+    </div>
+    <!-- Reading Progress Bar -->
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+  </header>
+
+  <!-- Quick Search Modal -->
+  <div class="modal-overlay" id="searchModal">
+    <div class="search-modal-box">
+      <div class="search-input-wrapper">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="globalSearchInput" placeholder="ابحث عن موديول، Model، Service، Controller، أو مسار..." autocomplete="off">
+        <button class="modal-close" id="closeSearchModal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="search-results-container" id="searchResults">
+        <div class="search-hint">اكتب للبحث الفوري في الـ 20 موديول ونماذج قاعدة البيانات والمسارات التقنية...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Container -->
+  <main class="main-content">
+    
+    <!-- Hero Section -->
+    <section class="section hero-section">
+      <div class="hero-content">
+        <div class="hero-pill">
+          <span class="pulse-dot"></span>
+          <span>تشريح كامل لجميع موديولات وخدمات الباك إند الحقيقية</span>
+        </div>
+        <h1 class="hero-title">
+          الموديولات الـ 20 في <span class="gradient-text">TechShop</span> بالتفصيل
+        </h1>
+        <p class="hero-subtitle">
+          استكشف النماذج (Models)، وحدات التحكم (Controllers)، والخدمات (Services)، وقنوات البث اللحظي (WebSockets) الخاصة بكل موديول تشغيلي وتقني.
+        </p>
+
+        <!-- Live Categories Filter -->
+        <div class="module-filter-bar" style="margin-top: 2rem;">
+          <div class="filter-search-box" style="margin: 0 auto 1.5rem;">
+            <i class="fa-solid fa-filter"></i>
+            <input type="text" id="moduleSearchInput" placeholder="تصفية فورية حسب اسم الموديول، الـ Model، أو الـ Service...">
+          </div>
+          <div class="filter-tags" id="moduleFilterTags" style="justify-content: center;">
+            <button class="filter-tag active" data-category="all">الكل (20 موديول)</button>
+            <button class="filter-tag" data-category="auth"><i class="fa-solid fa-user-lock"></i> المستخدمين والهوية</button>
+            <button class="filter-tag" data-category="catalog"><i class="fa-solid fa-store"></i> الكتالوج والتجار</button>
+            <button class="filter-tag" data-category="orders"><i class="fa-solid fa-truck-fast"></i> الطلبات والتوصيل</button>
+            <button class="filter-tag" data-category="finance"><i class="fa-solid fa-wallet"></i> المدفوعات والاشتراكات</button>
+            <button class="filter-tag" data-category="ops"><i class="fa-solid fa-sliders"></i> الدعم والتشغيل</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modules Grid Section -->
+    <section class="section">
+      <div class="modules-grid" id="modulesGrid">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Section: Quick Navigation Links -->
+    <section class="section summary-section">
+      <div class="summary-box">
+        <div class="summary-icon"><i class="fa-brands fa-laravel"></i></div>
+        <div class="summary-text">
+          <h3>هل تريد معرفة كيف تتكامل هذه الموديولات داخل محرك لارافيل؟</h3>
+          <p class="summary-quote">
+            انتقل إلى صفحة الشرح المعماري لكيفية عمل لارافيل 12 أو اطلع على دليل تشغيل المشروع من الصفر.
+          </p>
+        </div>
+        <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+          <a href="laravel.html" class="copy-summary-btn" style="text-decoration:none;">
+            <i class="fa-brands fa-laravel"></i>
+            <span>شرح محرك لارافيل</span>
+          </a>
+          <a href="quickstart.html" class="copy-summary-btn" style="background:rgba(255,255,255,0.15); color:white; border:1px solid rgba(255,255,255,0.3); text-decoration:none;">
+            <i class="fa-solid fa-terminal"></i>
+            <span>دليل التشغيل</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Module Details Modal Drawer -->
+  <div class="modal-overlay" id="moduleModal">
+    <div class="module-modal-box">
+      <button class="modal-close" id="closeModuleModal"><i class="fa-solid fa-xmark"></i></button>
+      <div class="module-modal-header" id="moduleModalHeader"></div>
+      <div class="module-modal-body" id="moduleModalBody"></div>
+    </div>
+  </div>
+
+  <!-- Presentation Slide Mode Overlay -->
+  <div class="presentation-mode" id="presentationMode">
+    <div class="pres-header">
+      <div class="pres-title">TechShop - عرض تقديمي تفاعلي</div>
+      <div class="pres-controls">
+        <span class="pres-counter" id="presCounter">Slide 1 of 6</span>
+        <button class="pres-btn" id="presPrev"><i class="fa-solid fa-chevron-right"></i> السابق</button>
+        <button class="pres-btn primary" id="presNext">التالي <i class="fa-solid fa-chevron-left"></i></button>
+        <button class="pres-btn exit" id="presExit"><i class="fa-solid fa-xmark"></i> إنهاء العرض (Esc)</button>
+      </div>
+    </div>
+    <div class="pres-body" id="presBody"></div>
+    <div class="pres-footer">
+      <span>استخدم مفاتيح الأسهم &larr; &rarr; للتنقل، و Esc للخروج</span>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <i class="fa-solid fa-cubes" style="color:var(--accent-secondary);"></i>
+        <span>TechShop 20 Domains Directory</span>
+      </div>
+      <p class="footer-desc">دليل معماري وهندسي شامل ومحدث ومطابق لكود الباك إند الفعلي.</p>
+      <div class="footer-links">
+        <a href="index.html">الرئيسية</a>
+        <a href="modules.html">الموديولات (20)</a>
+        <a href="laravel.html">كيف تعمل لارافيل</a>
+        <a href="quickstart.html">دليل التشغيل</a>
+      </div>
+      <div class="footer-copy">© 2026 TechShop Platform. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- Notification Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Shared Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>

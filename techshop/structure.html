@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دليل هيكل وملفات لارافيل 12 الشامل | Laravel Directory Structure Deep Dive</title>
+  <meta name="description" content="شرح تفصيلي وشامل لهيكل مجلدات وملفات مشروع لارافيل 12: ما هي وظيفة كل مجلد وملف بالتفصيل، كيف يبدو شكله وكوده من الداخل، ودورك العملي اليومي كمطور باك إند.">
+  
+  <!-- Google Fonts: Cairo, Outfit & Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Outfit:wght@400;600;700;800&family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+  <!-- Ambient Glows -->
+  <div class="ambient-glow glow-1 glow-laravel"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Header / Navigation -->
+  <header class="navbar-glass" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-group">
+        <div class="brand-logo laravel-theme">
+          <i class="fa-solid fa-folder-tree"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title laravel-text">Laravel Structure</span>
+          <span class="brand-badge" style="color:#fb7185;">Directory & Architecture</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> الرئيسية</a>
+        <a href="modules.html" class="nav-link"><i class="fa-solid fa-cubes"></i> الموديولات</a>
+        <a href="laravel.html" class="nav-link"><i class="fa-brands fa-laravel"></i> محرك لارافيل</a>
+        <a href="structure.html" class="nav-link laravel-active active"><i class="fa-solid fa-folder-tree"></i> هيكل الملفات</a>
+        <a href="quickstart.html" class="nav-link"><i class="fa-solid fa-terminal"></i> دليل التشغيل</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="modules.html" class="action-btn">
+          <i class="fa-solid fa-cubes"></i>
+          <span>الموديولات</span>
+        </a>
+        <button id="soundToggleBtn" class="action-btn" title="تفعيل/تعطيل الصوت">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+      </div>
+    </div>
+    <!-- Reading Progress Bar -->
+    <div class="scroll-progress-bar" id="scrollProgressBar" style="background: var(--gradient-laravel);"></div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="main-content">
+    
+    <!-- Hero Section -->
+    <section class="section hero-section">
+      <div class="hero-content">
+        <div class="hero-pill laravel-pill">
+          <span class="pulse-dot laravel-dot"></span>
+          <span>دليل تفصيلي عملي لهيكل ملفات ومجلدات Laravel 12 وكيف تبدو من الداخل</span>
+        </div>
+        <h1 class="hero-title">
+          تشريح مجلدات <span class="gradient-laravel">لارافيل 12</span> وكيف تبدو من الداخل
+        </h1>
+        <p class="hero-subtitle">
+          تعرف على دورك اليومي كمهندس باك إند في كل مجلد، كيف يبدو شكله وهيكله من الداخل، كود PHP حقيقي من واقع مشروع TechShop، وأين تضع كل سطر كود باحترافية.
+        </p>
+
+        <!-- Developer Cheat Metric Ribbon -->
+        <div class="stats-grid">
+          <div class="stat-card" data-tilt>
+            <div class="stat-icon icon-laravel"><i class="fa-solid fa-code"></i></div>
+            <div class="stat-info">
+              <span class="stat-number">/app</span>
+              <span class="stat-label">80% من وقتك اليومي (Models & Services & Controllers)</span>
+            </div>
+          </div>
+          <div class="stat-card" data-tilt>
+            <div class="stat-icon icon-cyan"><i class="fa-solid fa-route"></i></div>
+            <div class="stat-info">
+              <span class="stat-number">/routes</span>
+              <span class="stat-label">ربط نقاط نهاية الـ REST API والـ WebSockets</span>
+            </div>
+          </div>
+          <div class="stat-card" data-tilt>
+            <div class="stat-icon icon-emerald"><i class="fa-solid fa-database"></i></div>
+            <div class="stat-info">
+              <span class="stat-number">/database</span>
+              <span class="stat-label">Migrations للجداول والـ Seeders لملء البيانات</span>
+            </div>
+          </div>
+          <div class="stat-card" data-tilt>
+            <div class="stat-icon icon-amber"><i class="fa-solid fa-box-archive"></i></div>
+            <div class="stat-info">
+              <span class="stat-number">/storage</span>
+              <span class="stat-label">ملفات الـ Uploads وسجلات تتبع الأخطاء Logs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: Interactive 8 Folders Explorer -->
+    <section id="interactive-explorer" class="section">
+      <div class="section-header">
+        <div class="section-tag laravel-tag"><i class="fa-solid fa-folder-open"></i> استكشاف المجلدات الثمانية</div>
+        <h2 class="section-title">المجلدات الثمانية بالتفصيل الممل (دورك فيها + شكلها وكودها الداخلي)</h2>
+        <p class="section-desc">انقر على أي مجلد أدناه لاستعراض هيكله الداخلي، الكود الفعلي المكتوب جواه، ونصائح عملية لشغلك اليومي:</p>
+      </div>
+
+      <!-- 8 Folder Tabs -->
+      <div class="role-tabs" style="flex-wrap: wrap; justify-content: center; gap: 0.75rem;">
+        <button class="role-tab active" data-folder="app">
+          <i class="fa-solid fa-code" style="color:var(--accent-laravel);"></i>
+          <span>/app (القلب)</span>
+        </button>
+        <button class="role-tab" data-folder="bootstrap">
+          <i class="fa-solid fa-power-off" style="color:var(--accent-primary);"></i>
+          <span>/bootstrap (التهيئة)</span>
+        </button>
+        <button class="role-tab" data-folder="config">
+          <i class="fa-solid fa-gears" style="color:var(--accent-secondary);"></i>
+          <span>/config (الإعدادات)</span>
+        </button>
+        <button class="role-tab" data-folder="database">
+          <i class="fa-solid fa-database" style="color:var(--accent-emerald);"></i>
+          <span>/database (الجداول)</span>
+        </button>
+        <button class="role-tab" data-folder="public">
+          <i class="fa-solid fa-globe" style="color:var(--accent-amber);"></i>
+          <span>/public (الويب)</span>
+        </button>
+        <button class="role-tab" data-folder="resources">
+          <i class="fa-solid fa-palette" style="color:var(--accent-purple);"></i>
+          <span>/resources (الأصول)</span>
+        </button>
+        <button class="role-tab" data-folder="routes">
+          <i class="fa-solid fa-route" style="color:var(--accent-rose);"></i>
+          <span>/routes (المسارات)</span>
+        </button>
+        <button class="role-tab" data-folder="storage">
+          <i class="fa-solid fa-box-archive" style="color:#3b82f6;"></i>
+          <span>/storage (التخزين)</span>
+        </button>
+      </div>
+
+      <!-- Dynamic Folder Showcase Container -->
+      <div id="folderDetailsContainer" style="margin-top: 2rem;">
+        <!-- Injected dynamically by JS or default content -->
+      </div>
+    </section>
+
+    <!-- SECTION: Developer Daily Cheat Sheet Table -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-tag laravel-tag"><i class="fa-solid fa-table-list"></i> جدول المهام اليومية</div>
+        <h2 class="section-title">جدول الشغل اليومي للمطور مع هذه المجلدات</h2>
+        <p class="section-desc">ملخص سريع يوضح معدل تعديلك على كل مجلد وما تفعله بداخله أثناء بناء الميزات الجديدة:</p>
+      </div>
+
+      <div class="arch-card" style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; text-align: right; font-size: 0.95rem;">
+          <thead>
+            <tr style="border-bottom: 2px solid var(--border-glass); color: var(--accent-secondary);">
+              <th style="padding: 1rem 1.25rem;">المجلد</th>
+              <th style="padding: 1rem 1.25rem;">معدل عملك عليه</th>
+              <th style="padding: 1rem 1.25rem;">ماذا تفعل بداخله؟ (شغلك العملي)</th>
+              <th style="padding: 1rem 1.25rem;">أهم ملف أو مجلد بداخله</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--border-glass);">
+              <td style="padding: 1.1rem 1.25rem; font-weight: bold; color: var(--accent-laravel);"><i class="fa-solid fa-folder"></i> /app</td>
+              <td style="padding: 1.1rem 1.25rem;"><span class="badge-tech" style="background: rgba(255,45,32,0.15); color: #fb7185;">🔥 دائماً (80% من وقتك)</span></td>
+              <td style="padding: 1.1rem 1.25rem; color: var(--text-secondary);">كتابة الـ Models، الـ Services، تقسيم الطلبات، بوابات الدفع، والتحقق FormRequests.</td>
+              <td style="padding: 1.1rem 1.25rem;"><code>app/Services/</code> & <code>app/Models/</code></td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border-glass);">
+              <td style="padding: 1.1rem 1.25rem; font-weight: bold; color: var(--accent-rose);"><i class="fa-solid fa-folder"></i> /routes</td>
+              <td style="padding: 1.1rem 1.25rem;"><span class="badge-tech" style="background: rgba(244,63,94,0.15); color: var(--accent-rose);">🔥 يومياً</span></td>
+              <td style="padding: 1.1rem 1.25rem; color: var(--text-secondary);">إضافة مسارات Endpoints جديدة للـ API ولوحة الويب وقنوات Reverb.</td>
+              <td style="padding: 1.1rem 1.25rem;"><code>routes/api.php</code></td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border-glass);">
+              <td style="padding: 1.1rem 1.25rem; font-weight: bold; color: var(--accent-emerald);"><i class="fa-solid fa-folder"></i> /database</td>
+              <td style="padding: 1.1rem 1.25rem;"><span class="badge-tech" style="background: rgba(16,185,129,0.15); color: var(--accent-emerald);">⚡ مع كل ميزة جديدة</span></td>
+              <td style="padding: 1.1rem 1.25rem; color: var(--text-secondary);">إنشاء Migrations للجداول الجديدة وإضافة أعمدة وفهارس وحقن بيانات الـ Seeders.</td>
+              <td style="padding: 1.1rem 1.25rem;"><code>database/migrations/</code></td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border-glass);">
+              <td style="padding: 1.1rem 1.25rem; font-weight: bold; color: var(--accent-secondary);"><i class="fa-solid fa-folder"></i> /config</td>
+              <td style="padding: 1.1rem 1.25rem;"><span class="badge-tech" style="background: rgba(6,182,212,0.15); color: var(--accent-secondary);">⚙️ أحياناً</span></td>
+              <td style="padding: 1.1rem 1.25rem; color: var(--text-secondary);">ضبط إعدادات بوابات الدفع Kashier، مفاتيح Firebase FCM، وإعدادات Reverb.</td>
+              <td style="padding: 1.1rem 1.25rem;"><code>config/services.php</code></td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border-glass);">
+              <td style="padding: 1.1rem 1.25rem; font-weight: bold; color: var(--accent-purple);"><i class="fa-solid fa-folder"></i> /resources</td>
+              <td style="padding: 1.1rem 1.25rem;"><span class="badge-tech" style="background: rgba(168,85,247,0.15); color: var(--accent-purple);">🎨 أحياناً</span></td>
+              <td style="padding: 1.1rem 1.25rem; color: var(--text-secondary);">تعديل قوالب فواتير الـ PDF وقوالب رسائل البريد وملفات الترجمة (ar/en).</td>
+              <td style="padding: 1.1rem 1.25rem;"><code>resources/views/</code></td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border-glass);">
+              <td style="padding: 1.1rem 1.25rem; font-weight: bold; color: #3b82f6;"><i class="fa-solid fa-folder"></i> /storage</td>
+              <td style="padding: 1.1rem 1.25rem;"><span class="badge-tech" style="background: rgba(59,130,246,0.15); color: #3b82f6;">🔍 عند فحص الأخطاء</span></td>
+              <td style="padding: 1.1rem 1.25rem; color: var(--text-secondary);">قراءة سجلات الأخطاء <code>laravel.log</code> وفحص الصور والملفات المرفوعة.</td>
+              <td style="padding: 1.1rem 1.25rem;"><code>storage/logs/laravel.log</code></td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border-glass);">
+              <td style="padding: 1.1rem 1.25rem; font-weight: bold; color: var(--accent-amber);"><i class="fa-solid fa-folder"></i> /public</td>
+              <td style="padding: 1.1rem 1.25rem;"><span class="badge-tech">🌐 نادراً</span></td>
+              <td style="padding: 1.1rem 1.25rem; color: var(--text-secondary);">ربط مجلد التخزين العام عبر <code>php artisan storage:link</code> ووضع الأيقونات العامة.</td>
+              <td style="padding: 1.1rem 1.25rem;"><code>public/index.php</code></td>
+            </tr>
+            <tr>
+              <td style="padding: 1.1rem 1.25rem; font-weight: bold; color: var(--accent-primary);"><i class="fa-solid fa-folder"></i> /bootstrap</td>
+              <td style="padding: 1.1rem 1.25rem;"><span class="badge-tech">🚀 نادراً جداً</span></td>
+              <td style="padding: 1.1rem 1.25rem; color: var(--text-secondary);">تسجيل الميدلويرز العامة واستثناءات الـ CSRF والـ Exception Handlers في <code>app.php</code>.</td>
+              <td style="padding: 1.1rem 1.25rem;"><code>bootstrap/app.php</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION: Where to Put Code Decision Matrix -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-tag laravel-tag"><i class="fa-solid fa-compass"></i> القرار السريع</div>
+        <h2 class="section-title">أين أضع كودي؟ (Cheat Sheet)</h2>
+        <p class="section-desc">دليل إرشادي سريع لحسم مكان وضع أي كود جديد دون حيرة:</p>
+      </div>
+
+      <div class="roles-code-box">
+        <div class="roles-chips" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
+          <div class="role-chip">
+            <span class="chip-dot dot-green"></span>
+            <div>
+              <strong>علاقات الجداول وحقول قاعدة البيانات:</strong><br>
+              &larr; داخل <code>app/Models/YourModel.php</code>
+            </div>
+          </div>
+          <div class="role-chip">
+            <span class="chip-dot dot-blue"></span>
+            <div>
+              <strong>حسابات تقسيم الطلبات والمدفوعات والمفاوضات:</strong><br>
+              &larr; داخل <code>app/Services/YourService.php</code>
+            </div>
+          </div>
+          <div class="role-chip">
+            <span class="chip-dot dot-orange"></span>
+            <div>
+              <strong>فحص صحة مدخلات الـ Request (Required, Email..):</strong><br>
+              &larr; داخل <code>app/Http/Requests/YourRequest.php</code>
+            </div>
+          </div>
+          <div class="role-chip">
+            <span class="chip-dot dot-cyan"></span>
+            <div>
+              <strong>تنسيق الـ JSON المرجع لتطبيق الموبايل:</strong><br>
+              &larr; داخل <code>app/Http/Resources/YourResource.php</code>
+            </div>
+          </div>
+          <div class="role-chip">
+            <span class="chip-dot dot-purple"></span>
+            <div>
+              <strong>المهام المجدولة اليومية وفحص الاشتراكات:</strong><br>
+              &larr; داخل <code>app/Console/Commands/</code> و <code>routes/console.php</code>
+            </div>
+          </div>
+          <div class="role-chip">
+            <span class="chip-dot dot-red"></span>
+            <div>
+              <strong>الأحداث اللحظية وتتبع المناديب بالـ GPS:</strong><br>
+              &larr; داخل <code>app/Events/</code> مع تفعيل <code>ShouldBroadcast</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: Navigation Summary Box -->
+    <section class="section summary-section">
+      <div class="summary-box" style="background: var(--gradient-laravel);">
+        <div class="summary-icon"><i class="fa-solid fa-folder-tree"></i></div>
+        <div class="summary-text">
+          <h3>استكشف باقي أجزاء التوثيق المتكامل</h3>
+          <p class="summary-quote">
+            يمكنك الآن الانتقال لاستعراض الـ 20 موديول بالتفصيل أو قراءة كيفية عمل محرك لارافيل ودليل البدء والتشغيل.
+          </p>
+        </div>
+        <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+          <a href="modules.html" class="copy-summary-btn" style="color:var(--accent-laravel); text-decoration:none;">
+            <i class="fa-solid fa-cubes"></i>
+            <span>استعراض الموديولات (20)</span>
+          </a>
+          <a href="laravel.html" class="copy-summary-btn" style="background:rgba(255,255,255,0.15); color:white; border:1px solid rgba(255,255,255,0.3); text-decoration:none;">
+            <i class="fa-brands fa-laravel"></i>
+            <span>محرك لارافيل</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <i class="fa-solid fa-folder-tree" style="color:var(--accent-laravel);"></i>
+        <span>Laravel 12 Architecture & Directory Guide</span>
+      </div>
+      <p class="footer-desc">دليل معماري وهندسي شامل ومفصل يشرح هيكل ومسارات مشروع لارافيل من A إلى Z.</p>
+      <div class="footer-links">
+        <a href="index.html">الرئيسية</a>
+        <a href="modules.html">الموديولات (20)</a>
+        <a href="laravel.html">كيف تعمل لارافيل</a>
+        <a href="structure.html">هيكل الملفات</a>
+        <a href="quickstart.html">دليل التشغيل</a>
+      </div>
+      <div class="footer-copy">© 2026 TechShop Platform. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- Notification Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Shared App JS -->
+  <script src="app.js"></script>
+</body>
+</html>

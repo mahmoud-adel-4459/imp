@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دليل معمارية لارافيل 12 | كيف تعمل لارافيل من الداخل بالتفصيل</title>
+  <meta name="description" content="دليل تعليمي ومعماري شامل ومفصل يشرح كيف تعمل لارافيل 12 من الداخل: دورة حياة الطلب، الـ Service Container، الـ Middlewares، الـ Eloquent، الـ Queues، والـ WebSockets.">
+  
+  <!-- Google Fonts: Cairo, Outfit & Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Outfit:wght@400;600;700;800&family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+  <!-- Ambient Glows -->
+  <div class="ambient-glow glow-1 glow-laravel"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Header / Navigation -->
+  <header class="navbar-glass" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-group">
+        <div class="brand-logo laravel-theme">
+          <i class="fa-brands fa-laravel"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title laravel-text">Laravel 12 Engine</span>
+          <span class="brand-badge" style="color:#fb7185;">Deep Dive Masterclass</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> الرئيسية</a>
+        <a href="modules.html" class="nav-link"><i class="fa-solid fa-cubes"></i> الـ 20 موديول</a>
+        <a href="laravel.html" class="nav-link laravel-active active"><i class="fa-brands fa-laravel"></i> كيف تعمل لارافيل</a>
+        <a href="structure.html" class="nav-link"><i class="fa-solid fa-folder-tree"></i> هيكل الملفات</a>
+        <a href="quickstart.html" class="nav-link"><i class="fa-solid fa-terminal"></i> دليل التشغيل</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="index.html#order-flow" class="action-btn">
+          <i class="fa-solid fa-route"></i>
+          <span>محاكي الطلب</span>
+        </a>
+        <button id="soundToggleBtn" class="action-btn" title="تفعيل/تعطيل الصوت">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+      </div>
+    </div>
+    <!-- Reading Progress Bar -->
+    <div class="scroll-progress-bar" id="scrollProgressBar" style="background: var(--gradient-laravel);"></div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="main-content">
+    
+    <!-- Hero Section -->
+    <section class="section hero-section">
+      <div class="hero-content">
+        <div class="hero-pill laravel-pill">
+          <span class="pulse-dot laravel-dot"></span>
+          <span>دليل معماري وهندسي متخصص في أسرار ومحركات Laravel 12</span>
+        </div>
+        <h1 class="hero-title">
+          كيف تعمل <span class="gradient-laravel">لارافيل 12</span> من الداخل؟
+        </h1>
+        <p class="hero-subtitle">
+          تشريح كامل لدورة حياة الطلب (Request Lifecycle)، الحاوية الخدمية (Service Container)، خط أنابيب الـ Middlewares، الـ Eloquent ORM، طوابير المهام (Queues)، والريال تايم (Reverb).
+        </p>
+
+        <div class="hero-ctas">
+          <a href="#lifecycle" class="cta-btn action-btn highlight laravel-btn"><i class="fa-solid fa-rotate"></i> دورة حياة الطلب خطوة بخطوة</a>
+          <a href="#container" class="cta-btn secondary-btn"><i class="fa-solid fa-cube"></i> الحاوية الخدمية (Container)</a>
+          <a href="#best-practices" class="cta-btn glass-btn"><i class="fa-solid fa-gem"></i> أفضل الممارسات البرمجية</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: Request Lifecycle Step-by-Step -->
+    <section id="lifecycle" class="section">
+      <div class="section-header">
+        <div class="section-tag laravel-tag"><i class="fa-solid fa-route"></i> المسار الكامل للطلب</div>
+        <h2 class="section-title">1. دورة حياة الطلب بالتفصيل (Request Lifecycle)</h2>
+        <p class="section-desc">ماذا يحدث في السيرفر منذ اللحظة التي يضغط فيها المستخدم "إرسال" وحتى عودة استجابة JSON؟</p>
+      </div>
+
+      <div class="package-pipeline" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+        <div class="pipeline-step">
+          <div class="pipeline-number">01</div>
+          <div class="pipeline-icon" style="background:rgba(255,45,32,0.15); color:var(--accent-laravel);"><i class="fa-solid fa-door-open"></i></div>
+          <h3>نقطة الدخول (Entry Point)</h3>
+          <p>يصل الطلب إلى <code>public/index.php</code>. يتم تحميل الـ Autoloader الخاص بـ Composer ثم استدعاء ملف التهيئة <code>bootstrap/app.php</code> لإنشاء كائن التطبيق الأساسي <code>$app</code>.</p>
+          <span class="badge-tech">public/index.php</span>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="pipeline-number">02</div>
+          <div class="pipeline-icon" style="background:rgba(99,102,241,0.15); color:var(--accent-primary);"><i class="fa-solid fa-sliders"></i></div>
+          <h3>الـ Kernel ومصفوفة الـ Middlewares</h3>
+          <p>يمر الطلب عبر مصفوفة Middlewares مثل CORS، فحص الصيانة، وإزالة الفراغات، وتحديد معدل الطلبات (Rate Limiting) لحماية السيرفر من هجمات DDoS.</p>
+          <span class="badge-tech">HTTP Pipeline</span>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="pipeline-number">03</div>
+          <div class="pipeline-icon" style="background:rgba(6,182,212,0.15); color:var(--accent-secondary);"><i class="fa-solid fa-map-location-dot"></i></div>
+          <h3>التوجيه والمصادقة (Routing & Sanctum)</h3>
+          <p>يقوم الـ Router بمطابقة الـ URL المطلوب مع المسارات المعرفة في <code>routes/api.php</code> أو <code>web.php</code>. يقوم Sanctum Guard بالتحقق من Bearer Token وتعيين المستخدم الحالي <code>auth()->user()</code>.</p>
+          <span class="badge-tech">Sanctum Token Guard</span>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="pipeline-number">04</div>
+          <div class="pipeline-icon" style="background:rgba(16,185,129,0.15); color:var(--accent-emerald);"><i class="fa-solid fa-shield-check"></i></div>
+          <h3>التحقق من المدخلات (FormRequest)</h3>
+          <p>قبل تشغيل الكنترولر، تقوم كلاسات FormRequest بالتحقق الدقيق من الحقول والأنواع. إذا كانت هناك أخطاء يتم إيقاف الطلب وإرجاع <code>422 Unprocessable Content</code> فوراً.</p>
+          <span class="badge-tech">Validation Rules</span>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="pipeline-number">05</div>
+          <div class="pipeline-icon" style="background:rgba(245,158,11,0.15); color:var(--accent-amber);"><i class="fa-solid fa-cogs"></i></div>
+          <h3>الكنترولر وطبقة الخدمات (Service Layer)</h3>
+          <p>الكنترولر يستقبل المدخلات المعتمدة ويوجهها إلى الـ Service المختص (مثل <code>OrderService</code>) لمعالجة العمليات وحفظ وتحديث البيانات عبر Eloquent ORM في المعاملات (DB Transactions).</p>
+          <span class="badge-tech">Business Logic</span>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="pipeline-number">06</div>
+          <div class="pipeline-icon" style="background:rgba(168,85,247,0.15); color:var(--accent-purple);"><i class="fa-solid fa-paper-plane"></i></div>
+          <h3>تنسيق وإرسال الاستجابة (API Resource)</h3>
+          <p>يتم تغليف النماذج في <code>JsonResource</code> لتوحيد هيكل الـ JSON للموبايل، وتشفير أو إخفاء أي بيانات حساسة، ثم إرسال HTTP Response بحالة مناسبة (200, 201, 404...).</p>
+          <span class="badge-tech">JSON Response</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: Service Container & Dependency Injection -->
+    <section id="container" class="section">
+      <div class="section-header">
+        <div class="section-tag laravel-tag"><i class="fa-solid fa-cube"></i> القلب النابض للارافيل</div>
+        <h2 class="section-title">2. الحاوية الخدمية وحقن التبعيات (Service Container & DI)</h2>
+        <p class="section-desc">المحرك المسؤول عن إدارة الكائنات وبنائها تلقائياً عند الحاجة دون كتابة <code>new Class()</code> يدوياً.</p>
+      </div>
+
+      <div class="arch-grid">
+        <div class="arch-card">
+          <div class="arch-card-header">
+            <i class="fa-solid fa-code text-cyan"></i>
+            <h3>حقن التبعيات التلقائي (Automatic Auto-Wiring)</h3>
+          </div>
+          <p style="color:var(--text-secondary); margin-bottom:1rem;">عندما تطلب كلاس داخل Constructor الكنترولر، يقرأ محرك الـ Reflection في لارافيل النوع المطلوب وينشئه ويمرره تلقائياً:</p>
+          
+          <div class="code-terminal-box">
+            <span class="code-keyword">namespace</span> App\Http\Controllers\Api;<br><br>
+            <span class="code-keyword">use</span> App\Services\OrderService;<br>
+            <span class="code-keyword">use</span> App\Http\Requests\StoreOrderRequest;<br><br>
+            <span class="code-keyword">class</span> <span style="color:#fbbf24;">OrderController</span> <span class="code-keyword">extends</span> Controller {<br>
+            &nbsp;&nbsp;<span class="code-comment">// يتم حقن كائن OrderService تلقائياً عبر Container</span><br>
+            &nbsp;&nbsp;<span class="code-keyword">public function</span> __construct(<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">protected</span> OrderService $orderService<br>
+            &nbsp;&nbsp;) {}<br><br>
+            &nbsp;&nbsp;<span class="code-keyword">public function</span> store(StoreOrderRequest $request) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;$order = $this->orderService->createOrder($request->validated());<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-keyword">new</span> OrderResource($order);<br>
+            &nbsp;&nbsp;}<br>
+            }
+          </div>
+        </div>
+
+        <div class="arch-card">
+          <div class="arch-card-header">
+            <i class="fa-solid fa-puzzle-piece text-emerald"></i>
+            <h3>أنواع التسجيل في الـ Container (Bindings)</h3>
+          </div>
+          <ul class="arch-list">
+            <li>
+              <div class="route-badge"><code>Singleton Binding</code></div>
+              <p>يتم إنشاء نسخة واحدة فقط من الكلاس ومشاركتها طوال دورة حياة الطلب (مثل <code>KashierClient</code> و <code>FirebaseService</code>).</p>
+            </li>
+            <li>
+              <div class="route-badge"><code>Scoped Binding</code></div>
+              <p>يتم إنشاء نسخة جديدة لكل طلب HTTP وإتلافها بعد انتهاء الطلب.</p>
+            </li>
+            <li>
+              <div class="route-badge"><code>Interface to Implementation</code></div>
+              <p>ربط Interface بكلاس معين، مما يتيح لك تغيير مزود خدمة الدفع أو الـ SMS بسهولة في سطر واحد داخل <code>AppServiceProvider</code>.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: Eloquent ORM & Relationships -->
+    <section id="eloquent" class="section">
+      <div class="section-header">
+        <div class="section-tag laravel-tag"><i class="fa-solid fa-database"></i> التفاعل مع قاعدة البيانات</div>
+        <h2 class="section-title">3. محرك النماذج الفصيح (Eloquent ORM & Query Builder)</h2>
+        <p class="section-desc">كيف يربط Eloquent جداول قاعدة البيانات بكائنات برمجية قوية مع تجنب بطء الاستعلامات.</p>
+      </div>
+
+      <div class="arch-grid">
+        <div class="arch-card">
+          <div class="arch-card-header">
+            <i class="fa-solid fa-sitemap text-indigo"></i>
+            <h3>أنواع العلاقات المطبقة في TechShop</h3>
+          </div>
+          <ul class="arch-list">
+            <li>
+              <div class="route-badge"><code>One to Many (hasMany / belongsTo)</code></div>
+              <p>الـ <code>Vendor</code> يمتلك فروعاً متعددة <code>branches()</code>، والـ <code>Order</code> يمتلك عدة <code>vendorOrders()</code>.</p>
+            </li>
+            <li>
+              <div class="route-badge"><code>Many to Many (belongsToMany)</code></div>
+              <p>الـ <code>Product</code> يرتبط بعدة <code>Category</code> عبر جدول وسيط <code>product_categories</code>.</p>
+            </li>
+            <li>
+              <div class="route-badge"><code>Polymorphic Relations (morphMany)</code></div>
+              <p>التقييمات <code>ratings()</code> والشكاوى <code>reports()</code> يمكن أن ترتبط بمنتج أو بتاجر أو بمندوب باستخدام نفس الجدول.</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="arch-card">
+          <div class="arch-card-header">
+            <i class="fa-solid fa-gauge-high text-amber"></i>
+            <h3>الحماية من مشكلة الاستعلامات الكارثية (N+1 Problem)</h3>
+          </div>
+          <p style="color:var(--text-secondary); margin-bottom:1rem;">استخدام الـ <strong>Eager Loading</strong> مع <code>with()</code> يقلل عدد الاستعلامات من 101 استعلام إلى استعلامين فقط:</p>
+          
+          <div class="code-terminal-box">
+            <span class="code-comment">// ❌ طريقة بطيئة (N+1 Queries):</span><br>
+            $orders = Order::all(); <span class="code-comment">// 1 query</span><br>
+            <span class="code-keyword">foreach</span> ($orders <span class="code-keyword">as</span> $order) {<br>
+            &nbsp;&nbsp;$vendor = $order->vendorOrders; <span class="code-comment">// 1 query per order!</span><br>
+            }<br><br>
+            <span class="code-comment">//  طريقة سريعة ومثالية (Eager Loading):</span><br>
+            $orders = Order::<span class="code-keyword">with</span>([<span class="code-string">'vendorOrders.items'</span>, <span class="code-string">'user'</span>, <span class="code-string">'address'</span>])->get();
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Realtime WebSockets & Queues -->
+    <section id="realtime" class="section">
+      <div class="section-header">
+        <div class="section-tag laravel-tag"><i class="fa-solid fa-bolt"></i> السرعة واللحظية</div>
+        <h2 class="section-title">4. البث اللحظي والطوابير (Reverb WebSockets & Queues)</h2>
+        <p class="section-desc">كيف يتعامل النظام مع آلاف الأحداث المتزامنة دون إبطاء تجربة العميل.</p>
+      </div>
+
+      <div class="package-pipeline" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <div class="pipeline-step">
+          <div class="pipeline-icon" style="background:rgba(6,182,212,0.15); color:var(--accent-secondary);"><i class="fa-solid fa-satellite-dish"></i></div>
+          <h3>Laravel Reverb WebSockets</h3>
+          <p>خادم WebSockets فائق السرعة مدمج مع Laravel 12، يفتح قناة اتصال ثنائية الاتجاه مع تطبيقات الموبايل لبث تغير حالات الطلبات وتتبع المناديب بالـ GPS لحظة بلحظة.</p>
+          <span class="badge-tech">php artisan reverb:start</span>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="pipeline-icon" style="background:rgba(16,185,129,0.15); color:var(--accent-emerald);"><i class="fa-solid fa-list-check"></i></div>
+          <h3>Queue Workers (معالجة الخلفية)</h3>
+          <p>ترحيل العمليات الثقيلة مثل إرسال إشعارات FCM، توليد فواتير PDF، وتصدير التقارير لـ Excel إلى طوابير Redis أو Database لضمان سرعة استجابة الـ API في أجزاء من الثانية.</p>
+          <span class="badge-tech">php artisan queue:work</span>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="pipeline-icon" style="background:rgba(245,158,11,0.15); color:var(--accent-amber);"><i class="fa-solid fa-clock"></i></div>
+          <h3>Task Scheduler (الكرون التلقائي)</h3>
+          <p>إدارة كافة المهام الدورية (فحص الاشتراكات المنتهية، تفعيل الخطط المجدولة، إغلاق الشيفتات المتأخرة) في ملف <code>routes/console.php</code> وتشغيلها آلياً كل دقيقة.</p>
+          <span class="badge-tech">php artisan schedule:run</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Best Practices Checklist -->
+    <section id="best-practices" class="section">
+      <div class="section-header">
+        <div class="section-tag laravel-tag"><i class="fa-solid fa-gem"></i> معايير الإنتاج الاحترافية</div>
+        <h2 class="section-title">5. أفضل الممارسات البرمجية لضمان كود احترافي (Best Practices)</h2>
+        <p class="section-desc">القواعد الذهبية المطبقة في هذا المشروع لضمان استقرار وسرعة وأمان النظام.</p>
+      </div>
+
+      <div class="roles-code-box">
+        <div class="roles-chips">
+          <div class="role-chip"><span class="chip-dot dot-green"></span><strong>1. Single Responsibility:</strong> الكنترولر للتوجيه فقط، والـ Service للعمليات، والـ Model للعلاقات والـ Scopes.</div>
+          <div class="role-chip"><span class="chip-dot dot-cyan"></span><strong>2. Strategy Pattern:</strong> فصل منطق المنتجات البسيطة عن المتغيرة لسهولة إضافة أنواع جديدة مستقبلاً.</div>
+          <div class="role-chip"><span class="chip-dot dot-orange"></span><strong>3. Idempotent Operations:</strong> حماية الـ Webhooks والمعاملات المالية من التكرار عبر <code>PaymentWebhookEvent</code>.</div>
+          <div class="role-chip"><span class="chip-dot dot-purple"></span><strong>4. Database Indexing:</strong> فهرسة حقول الـ Foreign Keys والـ Status لتقليل زمن الاستعلامات المعقدة.</div>
+          <div class="role-chip"><span class="chip-dot dot-red"></span><strong>5. FormRequests over Controller Validation:</strong> تجريد قواعد التحقق في كلاسات منفصلة لسهولة الاختبار وإعادة الاستخدام.</div>
+          <div class="role-chip"><span class="chip-dot dot-blue"></span><strong>6. Automated Testing:</strong> كتابة Feature Tests لاختبار دورة الطلبات والمدفوعات آلياً مع كل تحديث.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Navigation Hub -->
+    <section class="section summary-section">
+      <div class="summary-box" style="background: var(--gradient-laravel);">
+        <div class="summary-icon"><i class="fa-brands fa-laravel"></i></div>
+        <div class="summary-text">
+          <h3>استكشف باقي أجزاء التوثيق التفاعلي</h3>
+          <p class="summary-quote">
+            انتقل الآن لاستعراض دليل الـ 20 موديول بالتفصيل أو دليل تشغيل المشروع خطوة بخطوة من الصفر.
+          </p>
+        </div>
+        <a href="modules.html" class="copy-summary-btn" style="color:var(--accent-laravel); text-decoration:none;">
+          <i class="fa-solid fa-cubes"></i>
+          <span>استعراض الموديولات</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <i class="fa-brands fa-laravel" style="color:var(--accent-laravel);"></i>
+        <span>Laravel 12 Deep Dive Architecture</span>
+      </div>
+      <p class="footer-desc">دليل معماري وهندسي شامل - تم تصميمه لتقديم أعلى مستوى من الفهم التقني والتشغيلي.</p>
+      <div class="footer-links">
+        <a href="index.html">الرئيسية</a>
+        <a href="modules.html">الموديولات (20)</a>
+        <a href="laravel.html">كيف تعمل لارافيل</a>
+        <a href="quickstart.html">دليل التشغيل</a>
+      </div>
+      <div class="footer-copy">© 2026 TechShop Platform. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- Notification Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Shared App JS -->
+  <script src="app.js"></script>
+</body>
+</html>
